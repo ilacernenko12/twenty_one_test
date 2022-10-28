@@ -59,7 +59,7 @@ class Character {
                 this.items[i] = items1[i]; //
             }
             this.items[this.items.length - 1] = item;
-            count++; // счетчик предметов
+            count++;
             System.out.println(this.name + " экипировал " + item.name + ". Кол-во вещей: " + count);
         }
     }
