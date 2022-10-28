@@ -1,12 +1,9 @@
 public class Main {
-    //[Нельзя изменять метод]
     public static void main(String[] args)
     {
-        // Создаются персонажи
         Character warrior = new Character("Warrior", 100);
         Character mage = new Character("Mage", 90);
 
-        //
         Sword sword = new Sword("Меч света", 24, 1);
         warrior.addItem(sword);
         warrior.addItem(sword);
@@ -30,6 +27,6 @@ public class Main {
         mage.onAttack(warrior);
 
         warrior.addItem(warrior.generateItem(Sword.class, "Меч рефлексии", 6, 1));
-        //warrior.addItem(warrior.generateItem(Body.class, "Тело рефлексии", 0, 4));
+        warrior.addItem(warrior.generateItem(Body.class, "Тело рефлексии", 0, 4));
     }
 }

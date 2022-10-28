@@ -1,8 +1,3 @@
-
-import lombok.Getter;
-
-import java.util.Arrays;
-
 class Character {
     private final String name;		//Здоровье персонажа
     private Item[] items;			//Вещи персонажа
@@ -15,8 +10,6 @@ class Character {
         this.items = new Item[0];
     }
 
-    //Метод атаки персонажа, другим персонажем
-    //[Можно изменять метод]
     public void onAttack(Character enemy) {
         int damage = 0;
         if (getDefence()>enemy.getAttack() || getDefence()== enemy.getAttack()){
@@ -34,7 +27,6 @@ class Character {
         }
     }
 
-    //[Добавлять методы сюда]
     private int getAttack() {
         int attack = 0;
         for (int i = 0; i < items.length; i++) {
@@ -59,15 +51,15 @@ class Character {
             }
         }
         if (q){
-            System.out.println("gg");
+            System.out.println("Персонаж не может несколько раз экипировать одну и ту же вещь");
         }else {
             Item[] items1 = this.items;
             this.items = new Item[items1.length + 1];
             for (int i = 0; i < items1.length; i++) {
-                this.items[i] = items1[i];
+                this.items[i] = items1[i]; //
             }
             this.items[this.items.length - 1] = item;
-
+            count++; // счетчик предметов
             System.out.println(this.name + " экипировал " + item.name + ". Кол-во вещей: " + count);
         }
     }
@@ -90,13 +82,22 @@ class Character {
                 }
             }
             this.items = items2;
+            count--;
             System.out.println(item.name + " удален у " + this.name + ". Осталось предметов: " + count);
         }
     }
 
-    public void generateItem(Class class, String name, int attack, int defence) {
-
+    public Item generateItem(Class clasz, String name, int attack, int defence){
+        Item item = null;
+        if (Sword.class.equals(clasz)) {
+            item = new Sword(name, attack, defence);
+        } else if (Mantle.class.equals(clasz)) {
+            item = new Mantle(name, attack, defence);
+        } else if (Body.class.equals(clasz)) {
+            item = new Body(name, attack, defence);
+        } else if (Staff.class.equals(clasz)) {
+            item = new Staff(name, attack, defence);
+        }
+        return item;
     }
-
-
 }
